@@ -8,19 +8,9 @@ Usage
 -----
 
 ```sh
-$ make
+$ dune build
 ```
 
 Example output:
 
 ![1 pass, 1 fail](https://raw.githubusercontent.com/ibnfirnas/caravan/master/examples/hello/screenshot.png)
-
-
-The default Make target (`all`) will perform everything:
-
-- install deps
-- clean
-- build
-- run the example
-
-See `Makefile` if you only want to run a subset of the operations.

@@ -1,6 +1,5 @@
-open Core.Std
-open Async.Std
-
+open Core
+open Async
 
 module Log      = Caravan.Log
 module Test     = Caravan.Test
@@ -94,7 +93,7 @@ let t_create =
   let case state ~log =
     let {State.config={Config.data1=body; host; port; headers;_}; _} = state in
     let uri =
-      let key = Uuid.create () |> Uuid.to_string in
+      let key = Uuid_unix.create () |> Uuid.to_string in
       sprintf "http://%s:%d/buckets/caravan_examples/keys/%s" host port key
     in
     let req =
@@ -216,12 +215,11 @@ let () =
     let (+) = (+>) in
     let host = C.default.C.host in
     let port = C.default.C.port in
-    Command.async_basic
+    Command.async
       ~summary:""
       ( empty
-      + flag "-host" (optional_with_default host string) ~doc:" Riak host."
-      + flag "-port" (optional_with_default port int   ) ~doc:" Riak port."
-      )
+	+ flag "-host" (optional_with_default host string) ~doc:" Riak host."
+	+ flag "-port" (optional_with_default port int   ) ~doc:" Riak port.")
       (fun host port () -> main ~config:{C.default with C.host; port})
   in
   Command.run spec

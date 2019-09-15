@@ -1,5 +1,4 @@
-open Core.Std
-open Async.Std
+open Async
 
 module Log : sig
   type t

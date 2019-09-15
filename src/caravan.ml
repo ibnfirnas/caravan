@@ -1,5 +1,5 @@
-open Core.Std
-open Async.Std
+open Core
+open Async
 
 
 module Log : sig
@@ -102,7 +102,7 @@ end = struct
       let module M = Msg in
       match filter with
       | None        -> msgs
-      | Some levels -> List.filter msgs ~f:(fun m -> List.mem levels m.M.level)
+      | Some levels -> List.filter msgs ~f:(fun m -> List.mem levels m.M.level ~equal:(=) )
     in
     String.concat ~sep:"\n" (List.map msgs ~f:Msg.to_string)
 end
@@ -170,9 +170,9 @@ end
 
 let reporter ~results_r =
   let report_of_results results =
-    let module C = Textutils.Ascii_table.Column in
+    let module C = Ascii_table.Column in
     let module R = Test.Result in
-    let time_span_to_string ts = sprintf "%.2f" (Time.Span.to_float ts) in
+    let time_span_to_string ts = sprintf "%.2f" (Time.Span.to_proportional_float ts) in
     let na = "N/A" in
     let get_id = function
       | R.Ran {R.id; _} -> id
@@ -211,8 +211,8 @@ let reporter ~results_r =
       ; C.create      "Log"    get_log   ~show:`If_not_empty
       ]
     in
-    Textutils.Ascii_table.to_string
-      ~display:Textutils.Ascii_table.Display.tall_box
+    Ascii_table.to_string
+      ~display:Ascii_table.Display.tall_box
       ~bars:`Unicode
       ~limit_width_to:300   (* TODO: Should be configurable *)
       columns

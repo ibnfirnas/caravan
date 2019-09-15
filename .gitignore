@@ -1,15 +1,3 @@
-# Directories
 _build/
-
-# Extensions
-*.byte
-*.native
-*.mllib
-*.mldylib
-
-# Specific files
-_tags
-setup.data
-setup.log
-setup.ml
-src/caravan/META
+*.merlin
+*.install

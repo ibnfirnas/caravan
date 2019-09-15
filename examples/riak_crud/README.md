@@ -8,7 +8,7 @@ Usage
 -----
 
 ```sh
-$ make
+$ dune build
 ```
 
 Example output when Riak is off:
@@ -17,12 +17,3 @@ Example output when Riak is off:
 
 Children of a failed test are skipped, since they're assumed to depend on state
 produced by the parent test.
-
-The default Make target (`all`) will perform everything:
-
-- install deps
-- clean
-- build
-- run the example
-
-See `Makefile` if you only want to run a subset of the operations.

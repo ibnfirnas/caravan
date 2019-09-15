@@ -1,0 +1,19 @@
+opam-version: "2.0"
+maintainer: "siraaj@khandkar.net"
+authors: "Siraaj Khandkar"
+homepage: "https://github.com/khandkar/caravan"
+bug-reports: "https://github.com/khandkar/caravan/issues"
+build: [
+  ["dune" "subst"] {pinned}
+  ["dune" "build" "-p" name "-j" jobs "@install"]
+]
+depends: [
+  "ocaml"
+  "dune" {>= "1.11.0"}
+  "core" {< "v0.13"}
+  "async" {< "113.24.00"}
+  "textutils" {< "v0.13"}
+]
+dev-repo: "git://github.com/ibnfirnas/caravan"
+synopsis: "An OCaml framework for testing arbitrary systems"
+description: "An OCaml framework for testing arbitrary systems. Inspired by Erlang/OTP's Common Test."

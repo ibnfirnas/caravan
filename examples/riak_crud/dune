@@ -1,0 +1,3 @@
+(executable
+  (name riak_crud)
+  (libraries caravan core cohttp-async async core.uuid))

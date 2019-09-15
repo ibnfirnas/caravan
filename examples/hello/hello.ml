@@ -1,5 +1,5 @@
-open Core.Std
-open Async.Std
+open Core
+open Async
 
 module Log  = Caravan.Log
 module Test = Caravan.Test
